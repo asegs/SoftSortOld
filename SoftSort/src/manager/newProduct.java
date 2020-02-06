@@ -6,24 +6,7 @@ import general.*;
 public class newProduct {
     static Scanner scanner=new Scanner(System.in);
     public int home(){
-        int mainEntryInt=4;
-        while (true) {
-            System.out.println("Would you like to: choose/edit an item category (0), create a new item category (1), list item categories (2), access settings (3), or exit the system (4):");
-            String mainEntry = scanner.nextLine();
-            if (mainEntry.length() == 1) {
-                char mainEntryChar = mainEntry.charAt(0);
-                if (Character.isDigit(mainEntryChar)){
-                    mainEntryInt=Integer.parseInt(mainEntry);
-                    if (mainEntryInt>=0&&mainEntryInt<=4){
-                        System.out.println("Ok.");
-                        break;
-                    }
-                }
-            }else{
-                System.out.println("Enter a number between 0 and 4.");
-            }
-        }
-        return mainEntryInt;
+        return giveValidEntry(0,4,"Would you like to: choose/edit an item category (0), create a new item category (1), list item categories (2), access settings (3), or exit the system (4):");
     }
     public String chooseItemCat(){
 
@@ -42,17 +25,73 @@ public class newProduct {
         return list[catChoiceInt];
     }
 
-    public void editItemCat(){
+
+    public int giveValidEntry(int lowerBound,int upperBound,String question){
+        int mainEntryInt=-1;
+        while (true) {
+            System.out.println(question);
+            mainEntryInt = scanner.nextInt();
+            if (mainEntryInt>=lowerBound&&mainEntryInt<=upperBound){
+                System.out.println("Ok.");
+                break;
+                    } else{
+                System.out.println("Enter a number between "+lowerBound +" and "+upperBound+".");
+            }
+        }
+        return mainEntryInt;
+    }
+
+
+    public void editItemCat(String category){
+        String filename="./SoftSort/src/general/"+category+".txt";
+        String thisCategory=fileReader.reader(filename,"\n");
+        String[] allLines=thisCategory.split("\n");
+        String tempLine="";
+        String subCats="";
+        for (int i=0;i<allLines.length;i++){
+            tempLine=allLines[i];
+            if(tempLine.substring(1).equals("+")){
+                subCats+=tempLine.substring(1,tempLine.length())+"\n";
+            }
+        }
+        String[] allSubCats=subCats.split("\n",0);
+        String question="Do you want to edit ";
+        for (int i=0;i<allSubCats.length;i++){
+            question+=allSubCats[i]+"("+i+")  ";
+        }
+        int itemEntryInt=giveValidEntry(0,allSubCats.length-1,question);
+        String subCatChosen=allSubCats[itemEntryInt];
+
 
     }
 
-    public void createItemCat(){
-        String categories= fileReader.reader("./SoftSort/src/general/categories.txt","\n");
-        String[] list=categories.split("\n",0);
+    public void addNewSubCat(String category){
+        String filename="./SoftSort/src/general/"+category+".txt";
+        String thisCategory=fileReader.reader(filename,"\n");
+        String[] list=thisCategory.split("\n",0);
+        String newSubCat=giveNewItem("subcategory",list);
+        newSubCat="+"+newSubCat;
+        fileEditor.addToFile(filename,newSubCat);
+        System.out.println("Subcategory "+category+" created successfully.");
+    }
+
+    public void editSubCat(String category){
+
+    }
+
+    public void deleteSubCat(String category){
+
+    }
+
+    public void listSubCatTree(){
+
+    }
+
+    public String giveNewItem(String type, String[] list){
         String newName=null;
         boolean inList=true;
         while (inList){
-            System.out.println("Enter the name of the new category:");
+            System.out.println("Enter the name of the new "+type+":");
             newName=scanner.nextLine();
             inList=false;
             for (int i=0;i<list.length;i++){
@@ -61,8 +100,15 @@ public class newProduct {
                 }
             }
         }
+        return newName;
+    }
+
+    public void createItemCat(){
+        String categories= fileReader.reader("./SoftSort/src/general/categories.txt","\n");
+        String[] list=categories.split("\n",0);
+        String newName=giveNewItem("category",list);
         fileEditor.addToFile("./SoftSort/src/general/categories.txt",newName);
-        fileGenerator.createFile(newName+".txt");
+        fileGenerator.createFile("./SoftSort/src/general/"+newName+".txt");
         System.out.println("Category "+newName+" created.");
 
     }
@@ -79,8 +125,10 @@ public class newProduct {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         newProduct prod=new newProduct();
         prod.createItemCat();
     }
+
+     */
 }
