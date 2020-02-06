@@ -19,9 +19,22 @@ public class login {
             return false;
         }
     }
-
-    public static void main(String[] args) {
+    public static void loginUI(){
         login log=new login();
-        System.out.println(log.checker());
+        boolean ready=false;
+        for (int i=0;i<3;i++){
+            if (log.checker()){
+                ready=true;
+                System.out.println("Access granted.");
+                break;
+            }
+            else{
+                System.out.println("Wrong password.  You have "+(2-i)+" remaining attempts.");
+                if (3-i<=0){
+                    System.out.println("Try again later.");
+                    break;
+                }
+            }
+        }
     }
 }
