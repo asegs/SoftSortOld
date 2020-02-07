@@ -32,7 +32,6 @@ public class newProduct {
             System.out.println(question);
             mainEntryInt = scanner.nextInt();
             if (mainEntryInt>=lowerBound&&mainEntryInt<=upperBound){
-                System.out.println("Ok.");
                 break;
                     } else{
                 System.out.println("Enter a number between "+lowerBound +" and "+upperBound+".");
@@ -42,7 +41,7 @@ public class newProduct {
     }
 
 
-    public void editItemCat(String category){
+    public void editSubCat(String category){
         String filename="./SoftSort/src/general/"+category+".txt";
         String thisCategory=fileReader.reader(filename,"\n");
         String[] allLines=thisCategory.split("\n");
@@ -50,7 +49,7 @@ public class newProduct {
         String subCats="";
         for (int i=0;i<allLines.length;i++){
             tempLine=allLines[i];
-            if(tempLine.substring(1).equals("+")){
+            if(tempLine.substring(0,1).equals("+")){
                 subCats+=tempLine.substring(1,tempLine.length())+"\n";
             }
         }
@@ -61,7 +60,39 @@ public class newProduct {
         }
         int itemEntryInt=giveValidEntry(0,allSubCats.length-1,question);
         String subCatChosen=allSubCats[itemEntryInt];
+        int end=thisCategory.indexOf("+",thisCategory.indexOf(subCatChosen));
+        if (end==-1){
+            end=thisCategory.length();
+        }
+        String choppedFile=thisCategory.substring(thisCategory.indexOf(subCatChosen),end);
+        System.out.println(choppedFile);
+        String newOption="";
+        while (true) {
+            int subCatInt = giveValidEntry(0, 3, "Do you want to add an option to a subcategory (0), remove an option (1), add options from a file (2), or quit (3):");
+            if (subCatInt == 0) {
+                Scanner scannerOptions = new Scanner(System.in);
+                System.out.println("Enter the new option:");
+                newOption+="-"+scannerOptions.nextLine()+"\n";
+                String partOne = thisCategory.substring(0, end);
+                String partTwo = thisCategory.substring(end, thisCategory.length());  //Could be bug here due to non-inclusive end
+                String content = partOne + newOption + partTwo;
+                fileEditor.replaceFile(filename, content);
 
+            }
+
+            if (subCatInt==1){
+
+            }
+
+            if (subCatInt==2){
+
+            }
+
+
+            if (subCatInt==3){
+                break;
+            }
+        }
 
     }
 
@@ -75,7 +106,8 @@ public class newProduct {
         System.out.println("Subcategory "+category+" created successfully.");
     }
 
-    public void editSubCat(String category){
+    public void editItemCat(String category){
+
 
     }
 
@@ -125,10 +157,10 @@ public class newProduct {
 
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         newProduct prod=new newProduct();
-        prod.createItemCat();
+        prod.editSubCat("Milk");
     }
 
-     */
+
 }
