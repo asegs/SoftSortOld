@@ -30,7 +30,7 @@ public class MapFromFile {
                         String subCatName = subString.substring(subString.indexOf("+")+1, subString.indexOf("\n"));
                         int subStart=subString.indexOf("-");
                         int subEnd=subString.indexOf("+", 1);
-                        String subCat="";
+                        String subCat;
                         String remainingCat="";
                         if (subStart<subEnd) {
                             subCat = subString.substring(subStart, subEnd);
@@ -63,9 +63,8 @@ public class MapFromFile {
 
     public static void main(String[] args) {
         HashMap<String,HashMap<String,ArrayList<String>>> map=makeMap();
-        HashMap<String,ArrayList<String>> cats=map.get("Knives");
-        ArrayList<String> options=cats.get("Steel");
-        System.out.println(options.get(0));
+        map.get("Knives").get("Steel").add("Damascus");
+        FileFromMap.makeFile(map);
     }
     }
 

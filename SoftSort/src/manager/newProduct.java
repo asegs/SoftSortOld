@@ -40,7 +40,6 @@ public class newProduct {
         return mainEntryInt;
     }
 
-
     public void editSubCat(String category){
         String filename="./SoftSort/src/general/"+category+".txt";
         String thisCategory=fileReader.reader(filename,"\n");
