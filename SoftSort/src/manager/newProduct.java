@@ -157,10 +157,10 @@ public class newProduct {
 
     }
 
-    public static void main(String[] args) {
-        newProduct prod=new newProduct();
-        prod.editSubCat("Milk");
-    }
+//    public static void main(String[] args) {
+//        newProduct prod=new newProduct();
+//        prod.editSubCat("Milk");
+//    }
 
 
 }
