@@ -2,6 +2,9 @@
 +Grip
 -G10
 -Steel
+-Aluminum
+-Rubber
+-Fiberglass
 +Steel
 -CPM-S30V
 -420HC
@@ -10,6 +13,8 @@
 +Style
 -Formal
 -Casual
+-Sportswear
+-Business casual
 +Gender
 -Men
 -Women
