@@ -5,6 +5,7 @@
 +Steel
 -CPM-S30V
 -420HC
+-Damascus
 @Clothing
 +Style
 -Formal
