@@ -19,3 +19,17 @@
 -Men
 -Women
 -Unisex
+@Food
++Price
+-Cheap
+-Luxury
+-Reasonable
++Health
+-Vegan
+-Unhealthy
+-Keto
++Taste
+-Sweet
+-Salty
+-Spicy
+-Bitter

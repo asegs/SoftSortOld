@@ -220,8 +220,8 @@ public class useMap {
         }
     }
 
-    public static void main(String[] args) {
-        useMap magpie=new useMap();
-        magpie.home();
-    }
+//    public static void main(String[] args) {
+//        useMap magpie=new useMap();
+//        magpie.home();
+//    }
 }
