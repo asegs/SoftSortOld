@@ -27,6 +27,6 @@ public class FileFromMap {
             }
         }
         System.out.println(file);
-        fileEditor.replaceFile("SoftSort/src/general/categories.txt",file);
+        fileEditor.replaceFile("SoftSort/src/general/categories.txt",file,false);
     }
 }

@@ -1,0 +1,10 @@
+G10,420HC
+G10,CPM-S30V
+Aluminum,Damascus
+G10,420HC
+G10,420HC
+Aluminum,CPM-S30V
+Fiberglass,420HC
+Steel,420HC
+Rubber,420HC
+Fiberglass,CPM-S30V

@@ -54,7 +54,7 @@ public class populator{
             indivString+="\n";
             mainString+=indivString;
         }
-        fileEditor.replaceFile("SoftSort/src/general/"+entry+".txt",mainString);
+        fileEditor.replaceFile("SoftSort/src/general/"+entry+".txt",mainString,true);
     }
 
 //    public static void main(String[] args) {

@@ -222,6 +222,9 @@ public class useMap {
                     //Write options operation here
                 }
             }
+            else{
+                System.out.println("This operation has not been added yet.");
+            }
         }
     }
 

@@ -75,7 +75,7 @@ public class newProduct {
                 String partOne = thisCategory.substring(0, end);
                 String partTwo = thisCategory.substring(end, thisCategory.length());  //Could be bug here due to non-inclusive end
                 String content = partOne + newOption + partTwo;
-                fileEditor.replaceFile(filename, content);
+                fileEditor.replaceFile(filename, content,false);
 
             }
 
@@ -101,7 +101,7 @@ public class newProduct {
         String[] list=thisCategory.split("\n",0);
         String newSubCat=giveNewItem("subcategory",list);
         newSubCat="+"+newSubCat;
-        fileEditor.addToFile(filename,newSubCat);
+        fileEditor.addToFile(filename,newSubCat,false);
         System.out.println("Subcategory "+category+" created successfully.");
     }
 
@@ -138,7 +138,7 @@ public class newProduct {
         String categories= fileReader.reader("./SoftSort/src/general/categories.txt","\n");
         String[] list=categories.split("\n",0);
         String newName=giveNewItem("category",list);
-        fileEditor.addToFile("./SoftSort/src/general/categories.txt",newName);
+        fileEditor.addToFile("./SoftSort/src/general/categories.txt",newName,false);
         fileGenerator.createFile("./SoftSort/src/general/"+newName+".txt");
         System.out.println("Category "+newName+" created.");
 
