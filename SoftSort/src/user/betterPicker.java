@@ -3,12 +3,13 @@ import general.fileReader;
 import manager.MapFromFile;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class betterPicker {
     static Scanner scanner=new Scanner(System.in);
-    public static void choose(){
+    public static indivObject choose(){
         HashMap<String,HashMap<String,ArrayList<String>>> map=MapFromFile.makeMap();
         for (String elem:map.keySet()){
             System.out.println("@"+elem);
@@ -17,7 +18,7 @@ public class betterPicker {
         String name;
         while (true){
             name=scanner.nextLine();
-            if (map.keySet().contains(name)){
+            if (map.containsKey(name)){
                 break;
             }else{
                 System.out.println("That category does not exist.");
@@ -26,7 +27,7 @@ public class betterPicker {
         HashMap<String,ArrayList<String >> chosenCat=map.get(name);
         HashMap<String,Double> WeightMap=new HashMap<>();
         HashMap<String,String> preferencesMap=new HashMap<>();
-        HashMap<Integer,indivObject> objects=new HashMap<>();
+        ArrayList<indivObject> objects=new ArrayList<>();
         for (String elem:chosenCat.keySet()){
             System.out.println("How much do you care about "+name+"."+elem+"? (1 is standard, 2 is double, 0.5 is half):");
             Double pref=scanner.nextDouble();;
@@ -47,8 +48,8 @@ public class betterPicker {
             }
             preferencesMap.put(elem,option);
 
-        }
-        String block=fileReader.reader("SoftSort/src/general/"+name+".txt","");
+        } //good
+        String block=fileReader.reader("SoftSort/src/general/"+name+".txt","\n");
         String[] lst=block.split("\n",0);
         int counter=0;
         for (String item:lst){
@@ -57,13 +58,23 @@ public class betterPicker {
             for (String subElem:subLst){
                 obj.addItems(subElem);
             }
-            ArrayList<String> recent=obj.getItems();
-            int newCounter=0;
-            for (String option:recent){
-
-            }
-            objects.put(counter,obj);
+            objects.add(obj);
             counter++;
         }
+
+        for (int i=0;i<counter;i++){
+            indivObject object=objects.get(i);
+            ArrayList<String> items=object.getItems();
+            int subCounter=0;
+            for (String preference:preferencesMap.keySet()){
+                if (preferencesMap.get(preference).equals(items.get(subCounter))){
+                    object.setScore(WeightMap.get(preference)+object.getScore());
+                }
+                subCounter++;
+            }
+            objects.set(i,object);
+        }
+        Collections.sort(objects);
+        return objects.get(0);
     }
 }

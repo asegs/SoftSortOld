@@ -2,13 +2,13 @@ package user;
 
 import java.util.ArrayList;
 
-public class indivObject {
+public class indivObject implements Comparable<indivObject> {
     private ArrayList<String> items;
     private double score;
 
     public indivObject(){
         this.items= new ArrayList<>();
-        this.score=0;
+        this.score=0.0;
     }
 
 
@@ -16,7 +16,7 @@ public class indivObject {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
@@ -26,5 +26,10 @@ public class indivObject {
 
     public void addItems(String item) {
         this.items.add(item);
+    }
+
+    @Override
+    public int compareTo(indivObject other) {
+        return (int)(other.score-this.score);
     }
 }

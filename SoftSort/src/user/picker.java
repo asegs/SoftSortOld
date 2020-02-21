@@ -51,10 +51,9 @@ public class picker {
 
         }
         String datasetCSV= fileReader.reader("SoftSort/src/general/"+entry+".txt","");
-        HashMap<Integer,String//>
     }
-
-    public static void main(String[] args) {
-        getInputs();
-    }
+//
+//    public static void main(String[] args) {
+//        getInputs();
+//    }
 }

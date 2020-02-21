@@ -1,5 +1,7 @@
 package manager;
 
+import general.populator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -130,12 +132,15 @@ public class useMap {
         boolean exit=false;
         useMap use=new useMap();
         while (!exit){
-            String homeQuestion="Enter what you want to do, starting with 'add', 'edit', or 'fleshed', followed by 'cat'/'subcat'/'options'/." +
+            String homeQuestion="Enter what you want to do, starting with 'add', 'edit', 'populate', or 'fleshed', followed by 'cat'/'subcat'/'options'/." +
                     "\nFleshed allows you to fill create and fill out a category instead of just defining it.  ";
             System.out.println(homeQuestion);
             String entry=scanner.nextLine();
             String[] parsedEntry=entry.split(" ",0);
             if (parsedEntry.length==2) {
+                if (parsedEntry[0].equals("populate")&&parsedEntry[1].equals("cat")){
+                    populator.createData();
+                }
                 if (parsedEntry[0].equals("add")) {
                     if (parsedEntry[1].equals("cat")) {
                         use.addCat();
