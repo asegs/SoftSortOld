@@ -38,12 +38,16 @@ public class betterPicker {
             }
             System.out.println("Which of these options do you want for "+name+"."+elem+"?");
             String option;
+            boolean hasGone=false;
             while (true){
                 option=scanner.nextLine();
                 if (options.contains(option)){
                     break;
                 }else{
-                    System.out.println("This is not a valid option.");
+                    if (hasGone){
+                        System.out.println("This is not a valid option.");
+                    }
+                    hasGone=true;
                 }
             }
             preferencesMap.put(elem,option);
