@@ -17,12 +17,12 @@ public class Hub {
             System.exit(0);
         }
         else{
-            user.indivObject object=betterPicker.choose();
-            ArrayList<String> features=object.getItems();
+            user.Passer object=betterPicker.choose();
+            ArrayList<String> features=object.getObject().getItems();
             for (String elem:features){
                 System.out.println(elem);
             }
-            System.out.println("Score is: "+object.getScore());
+            System.out.println("Score is: "+(object.getObject().getScore()/object.getMaxScore())*100+"%");
         }
         }
 

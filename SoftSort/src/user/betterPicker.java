@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 public class betterPicker {
     static Scanner scanner=new Scanner(System.in);
-    public static indivObject choose(){
+    static double maxScore=0;
+    public static Passer choose(){
         HashMap<String,HashMap<String,ArrayList<String>>> map=MapFromFile.makeMap();
         for (String elem:map.keySet()){
             System.out.println("@"+elem);
@@ -78,7 +79,11 @@ public class betterPicker {
             }
             objects.set(i,object);
         }
+        for (String elem:WeightMap.keySet()){
+            maxScore+=WeightMap.get(elem);
+        }
         Collections.sort(objects);
-        return objects.get(0);
+        Passer passer=new Passer(objects.get(0),maxScore);
+        return passer;
     }
 }
