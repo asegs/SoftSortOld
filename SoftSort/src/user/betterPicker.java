@@ -1,7 +1,6 @@
 package user;
 import general.fileReader;
 import manager.MapFromFile;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,18 +30,18 @@ public class betterPicker {
         ArrayList<indivObject> objects=new ArrayList<>();
         for (String elem:chosenCat.keySet()){
             System.out.println("How much do you care about "+name+"."+elem+"? (1 is standard, 2 is double, 0.5 is half):");
-            Double pref=scanner.nextDouble();;
+            Double pref=scanner.nextDouble();
             WeightMap.put(elem,pref);
             ArrayList<String> options=chosenCat.get(elem);
             for (String option:options){
-                System.out.println("-"+option);
+                System.out.println("("+options.indexOf(option)+")"+option);
             }
             System.out.println("Which of these options do you want for "+name+"."+elem+"?");
-            String option;
+            int option;
             boolean hasGone=false;
             while (true){
-                option=scanner.nextLine();
-                if (options.contains(option)){
+                option=scanner.nextInt();
+                if (option>0&&option<options.size()){
                     break;
                 }else{
                     if (hasGone){
@@ -51,9 +50,9 @@ public class betterPicker {
                     hasGone=true;
                 }
             }
-            preferencesMap.put(elem,option);
+            preferencesMap.put(elem,options.get(option));
 
-        } //good
+        }
         String block=fileReader.reader("SoftSort/src/general/"+name+".txt","\n");
         String[] lst=block.split("\n",0);
         int counter=0;
