@@ -2,10 +2,7 @@ package manager;
 
 import general.populator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class useMap {
     static public HashMap<String,HashMap<String, ArrayList<String>>> map=MapFromFile.makeMap();
@@ -167,7 +164,7 @@ public class useMap {
                         }
                         System.out.println("Which subcategory do you want to add to?");
                         String subCatName=scanner.nextLine();
-                        use.editSubCat(catName,subCatName);
+                        editSubCat(catName,subCatName);
 
                     }
                 }
@@ -189,18 +186,27 @@ public class useMap {
                         while (!mainSuccess){
                             System.out.println("Enter the new category name:");
                             catName=scanner.nextLine();
-                            mainSuccess=use.addPlainCat(catName);
+                            mainSuccess= addPlainCat(catName);
                         }
-                        System.out.println("Enter the names of your subcategories for '"+catName+"', separated only by commas:");
+                        System.out.println("Enter the names of your subcategories for '"+catName+"', separated only by commas.  For a sliding scale number category, enter a <M> before its name:");
                         String subCatSep=scanner.nextLine();
                         String[] subCatLst=subCatSep.split(",",0);
                         for (String elem:subCatLst){
                             ArrayList<String> emptyArr=new ArrayList<>();
-                            System.out.println("Enter the options to add to '"+catName+"."+elem+"', separated only by commas:");
-                            String opsEntry=scanner.nextLine();
-                            String[] opLst=opsEntry.split(",",0);
-                            for (String item:opLst){
-                                emptyArr.add(item);
+                            if (elem.substring(0,3).equals("<M>")){
+                                System.out.println("What is the lower bound for "+catName+"."+elem+":");
+                                emptyArr.add(scanner.nextLine());
+                                System.out.println("What is the upper bound for "+catName+"."+elem+":");
+                                emptyArr.add(scanner.nextLine());
+                                System.out.println("What is the unit of "+catName+"."+elem+":");
+                                emptyArr.add(scanner.nextLine());
+
+                            }
+                            else {
+                                System.out.println("Enter the options to add to '" + catName + "." + elem + "', separated only by commas:");
+                                String opsEntry = scanner.nextLine();
+                                String[] opLst = opsEntry.split(",", 0);
+                                emptyArr.addAll(Arrays.asList(opLst));
                             }
                             map.get(catName).put(elem,emptyArr);
                             FileFromMap.makeFile(map);

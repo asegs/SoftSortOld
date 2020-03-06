@@ -29,6 +29,9 @@ public class betterPicker {
         HashMap<String,String> preferencesMap=new HashMap<>();
         ArrayList<indivObject> objects=new ArrayList<>();
         for (String elem:chosenCat.keySet()){
+            if (elem.substring(0,3).equals("<M>")){
+                //write the slider here
+            }
             System.out.println("How much do you care about "+name+"."+elem+"? (1 is standard, 2 is double, 0.5 is half):");
             Double pref=scanner.nextDouble();
             WeightMap.put(elem,pref);

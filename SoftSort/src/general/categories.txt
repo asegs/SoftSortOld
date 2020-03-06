@@ -28,7 +28,50 @@
 -V
 -Diesel
 -W
-@Knives
+@test 2
++Speed
+-Fast
+-Slow
+-Really fast
+-Dog shit pace
+-Stopped
++Shape
+-Rhombus
+-Triangle
+-Circle
+-Rectangle
+-Square
++Color
+-Black
+-White
+-Red
+-Blue
+-Yellow
+-Orange
+-Bitchin'
++Firmness
+-Hard
+-Soft
+-Mid
++Suspension
+-High travel
+-Performance
+-Stiff
+-Blown shocks
+-Loose
++Gender
+-Men
+-Women
+-Unisex
++Steel
+-CPM-S30V
+-420HC
+-Damascus
++Smell
+-Rank
+-Musk
+-Moist
+-Poopoo
 +Grip
 -G10
 -Steel
@@ -37,66 +80,6 @@
 -Fiberglass
 -Paper
 -Plastic
-+Steel
--CPM-S30V
--420HC
--Damascus
-@Clothing
-+Style
--Formal
--Casual
--Sportswear
--Business casual
-+Gender
--Men
--Women
--Unisex
-@Gems
-+Shape
--Rhombus
--Triangle
--Circle
--Rectangle
--Square
-+Color
--Blue
--Red
--Green
--Purple
-+Opacity
--Translucent
--Opaque
--Clear
-@Soil
-+Color
--Red
--Black
--Brown
--Beige
--Red2
--White
--Black A1
--A00
-+Firmness
--Hard
--Soft
--Mid
-+Dampness
--Wet
--Moist
--Dry
-+Smell
--Rank
--Musk
--Moist
--Poopoo
-@Bike
-+Speed
--Fast
--Slow
--Really fast
--Dog shit pace
--Stopped
 +Terrain
 -Mountain
 -Road
@@ -112,17 +95,21 @@
 -In debt
 -Premium
 -Motorcycle
-+Color
--Black
--White
--Red
--Blue
--Yellow
--Orange
--Bitchin'
-+Suspension
--High travel
--Performance
--Stiff
--Blown shocks
--Loose
++Style
+-Formal
+-Casual
+-Sportswear
+-Business casual
++Opacity
+-Translucent
+-Opaque
+-Clear
++Dampness
+-Wet
+-Moist
+-Dry
+@test
++<M>Price
+-10
+-50
+-Dollars
