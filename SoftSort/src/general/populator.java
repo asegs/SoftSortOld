@@ -36,7 +36,7 @@ public class populator{
         int numberOfObjs;
         while (true){
             numberOfObjs=scanner.nextInt();
-            if (numberOfObjs<=100000){
+            if (numberOfObjs<=1000000){
                 break;
             }
         }
@@ -47,8 +47,14 @@ public class populator{
             indivString="";
             for (String item:chosenMap.keySet()){
                 ArrayList<String> tempArr=chosenMap.get(item);
-                int randNum=random.nextInt(tempArr.size());
-                indivString+=tempArr.get(randNum)+",";
+                if (item.substring(0,3).equals("<M>")){
+                    int randNum=Integer.parseInt(tempArr.get(0))+random.nextInt(Integer.parseInt(tempArr.get(1)));
+                    indivString+=randNum+",";
+                }
+                else {
+                    int randNum = random.nextInt(tempArr.size());
+                    indivString += tempArr.get(randNum) + ",";
+                }
             }
             indivString=indivString.substring(0,indivString.length()-1);
             indivString+="\n";
