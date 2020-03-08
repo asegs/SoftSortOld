@@ -87,6 +87,7 @@ public class betterPicker {
                     double difference=Math.abs(choice-value);
                     ArrayList<String> rangeArr =chosenCat.get(preference);
                     double range=Integer.parseInt(rangeArr.get(1))-Integer.parseInt(rangeArr.get(0));
+                    System.out.println(difference/range);
                     object.setScore(WeightMap.get(preference)*(1-difference/range)+object.getScore());
                     //1-difference/range
                 }
